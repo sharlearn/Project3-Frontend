@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 
 export default function ShirtCard(props) {
   console.log(props);
+  console.log(props.themes);
   return (
     <Card style={{ width: "10rem" }}>
       <Container style={{ height: "10rem" }}>
@@ -21,6 +22,11 @@ export default function ShirtCard(props) {
       <Card.Body>
         <Card.Title style={{ height: "2rem" }}>{props.designName}</Card.Title>
         {props.designer && <Card.Text>designed by: {props.designer}</Card.Text>}
+        {props.themes && (
+          <Card.Text>
+            Theme: {props.themes.map((theme) => theme.theme)}
+          </Card.Text>
+        )}
         {props.price && <Card.Text>{props.price}</Card.Text>}
       </Card.Body>
     </Card>
