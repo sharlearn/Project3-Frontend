@@ -22,9 +22,10 @@ const Shirts = () => {
         <Row className="row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
           {allDesigns
             .filter((item, index) => index < 9)
-            .map((design) => (
+            .map((design, index) => (
               <Col>
                 <ShirtCard
+                  key={index}
                   imageURL={design.image_url}
                   designName={design.design_name}
                   themes={design.themes}

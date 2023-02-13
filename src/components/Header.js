@@ -10,7 +10,9 @@ export default function Header() {
   return (
     <Navbar expand="sm">
       <Container fluid>
-        <Navbar.Brand className="header-title">Project Tee</Navbar.Brand>
+        <Navbar.Brand className="header-title" href="/">
+          Project Tee
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <InputGroup className="search-input">

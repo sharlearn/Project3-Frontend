@@ -36,6 +36,8 @@ export default function ShirtModal(props) {
       size: selectedSize,
       color: selectedColour,
       quantity: quantity,
+      imageURL: props.imageURL,
+      price: props.price,
     };
     const currentItems = JSON.parse(localStorage.getItem("cartItems"));
 
@@ -85,6 +87,7 @@ export default function ShirtModal(props) {
                 {sizeOptions.map((size) => (
                   <>
                     <input
+                      key={size.value}
                       type="radio"
                       className="btn-check"
                       name="options-size"
@@ -106,6 +109,7 @@ export default function ShirtModal(props) {
                 {colourOptions.map((colour) => (
                   <>
                     <input
+                      key={colour}
                       type="radio"
                       className="btn-check"
                       name="options-colour"
@@ -114,14 +118,14 @@ export default function ShirtModal(props) {
                       value={colour}
                       onClick={colourSelected}
                     />
-                    <label className="btn" for={`option-${colour}`}>
+                    <label className="btn" htmlFor={`option-${colour}`}>
                       {colour}
                     </label>
                   </>
                 ))}
               </p>
               <p>
-                <label for="shirt-quantity">Quantity:</label>
+                <label htmlFor="shirt-quantity">Quantity:</label>
                 <input
                   type="number"
                   min="1"
