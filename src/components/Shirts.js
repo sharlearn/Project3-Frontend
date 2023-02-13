@@ -16,20 +16,21 @@ const Shirts = () => {
     retrieveDesigns();
   }, []);
 
-  console.log(allDesigns);
-
   return (
     <div>
-      <div className="shirt-card=gallery">
-        <Row className="g-1">
+      <div className="container text-center">
+        <Row className="row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
           {allDesigns
-            .filter((item, index) => index < 15)
+            .filter((item, index) => index < 9)
             .map((design) => (
               <Col>
                 <ShirtCard
                   imageURL={design.image_url}
                   designName={design.design_name}
                   themes={design.themes}
+                  designId={design.id}
+                  designer={design.user.username}
+                  price={design.price}
                 />
               </Col>
             ))}
