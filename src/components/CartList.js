@@ -11,13 +11,13 @@ export default function CartList(props) {
           />
         </div>
         <div className="col">
-          <h5>{props.designName}</h5>
+          <h6>{props.designName}</h6>
           <p>{props.color}</p>
           <p>{props.size}</p>
-          <p>{props.price}</p>
+          <p>${props.price}/pc</p>
         </div>
         <div className="col">
-          <div>{props.quantity}</div>
+          <div>Qty: {props.quantity}</div>
         </div>
       </div>
     </div>

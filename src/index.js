@@ -9,6 +9,7 @@ import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
 import ShirtsGallery from "./pages/ShirtsGallery";
 import Cart from "./pages/Cart";
+import CheckOut from "./pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "aboutus", element: <AboutUs /> },
       { path: "shirts", element: <ShirtsGallery /> },
       { path: "cart", element: <Cart /> },
+      { path: "checkout", element: <CheckOut /> },
     ],
   },
 ]);

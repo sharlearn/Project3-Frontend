@@ -12,3 +12,21 @@
 .input-group {
   width: 40dvw !important;
 }
+
+#order-summary {
+  background-color: #f5f5f5;
+  border-color: #f5f5f5;
+}
+
+.link-light {
+  text-decoration: none;
+}
+
+.shirt-card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.shirt-card-card:hover {
+  background-color: rgba(110, 133, 255, 0.3);
+}
