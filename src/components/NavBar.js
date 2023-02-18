@@ -2,6 +2,20 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 
+const themes = [
+  "Food",
+  "Nature",
+  "Typography",
+  "Tattoo",
+  "Science",
+  "Gaming",
+  "Animals",
+  "Abstract",
+  "Cute",
+  "Space",
+  "Ocean",
+];
+
 const NavBar = () => {
   return (
     <Nav className="justify-content-center" bg="light">
@@ -9,15 +23,11 @@ const NavBar = () => {
         <Link to={`shirts`}>new</Link>
       </Nav.Item>
       <NavDropdown title="themes">
-        <NavDropdown.Item>
-          <Link to={`shirts`}>food</Link>
-        </NavDropdown.Item>
-        <NavDropdown.Item>
-          <Link to={`shirts`}>nature</Link>
-        </NavDropdown.Item>
-        <NavDropdown.Item>
-          <Link to={`shirts`}>typography</Link>
-        </NavDropdown.Item>
+        {themes.map((theme, index) => (
+          <NavDropdown.Item key={index}>
+            <Link to={`shirts`}>{theme}</Link>
+          </NavDropdown.Item>
+        ))}
       </NavDropdown>
       <NavDropdown title="artists">
         <NavDropdown.Item>
