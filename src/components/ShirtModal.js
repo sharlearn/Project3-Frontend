@@ -78,16 +78,15 @@ export default function ShirtModal(props) {
               />
             </div>
           </div>
-          <div className="container">
+          <div className="container w-75">
             <h4>{props.designName}</h4>
             <p>Design by {props.designer}</p>
             <p>$ {props.price}</p>
             <form onSubmit={handleSubmit}>
-              <p>
-                {sizeOptions.map((size) => (
-                  <>
+              <div className="d-flex">
+                {sizeOptions.map((size, index) => (
+                  <div key={index}>
                     <input
-                      key={size.value}
                       type="radio"
                       className="btn-check"
                       name="options-size"
@@ -102,14 +101,13 @@ export default function ShirtModal(props) {
                     >
                       {size.display}
                     </label>
-                  </>
+                  </div>
                 ))}
-              </p>
-              <p>
-                {colourOptions.map((colour) => (
-                  <>
+              </div>
+              <div className="container row row-cols-3 m-0 p-0">
+                {colourOptions.map((colour, index) => (
+                  <div class="col p-0 border" key={index}>
                     <input
-                      key={colour}
                       type="radio"
                       className="btn-check"
                       name="options-colour"
@@ -118,12 +116,12 @@ export default function ShirtModal(props) {
                       value={colour}
                       onClick={colourSelected}
                     />
-                    <label className="btn" htmlFor={`option-${colour}`}>
+                    <label className="btn p-0" htmlFor={`option-${colour}`}>
                       {colour}
                     </label>
-                  </>
+                  </div>
                 ))}
-              </p>
+              </div>
               <p>
                 <label htmlFor="shirt-quantity">Quantity:</label>
                 <input

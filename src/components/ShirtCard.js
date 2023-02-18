@@ -17,7 +17,7 @@ export default function ShirtCard(props) {
         onClick={() => setShowModal(true)}
       >
         <Card className="shirt-card-card" style={{ width: "10rem" }}>
-          <Container style={{ height: "10rem" }}>
+          <Container key={props.key} style={{ height: "10rem" }}>
             <div style={{ display: isLoading ? "block" : "none" }}>
               {icons.spinner}
             </div>

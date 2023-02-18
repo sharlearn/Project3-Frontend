@@ -25,7 +25,6 @@ const Shirts = () => {
             .map((design, index) => (
               <Col>
                 <ShirtCard
-                  key={index}
                   imageURL={design.image_url}
                   designName={design.design_name}
                   themes={design.themes}
