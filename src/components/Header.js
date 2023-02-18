@@ -5,8 +5,13 @@ import icons from "../utilities/icons";
 import Container from "react-bootstrap/esm/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
+import LoginButton from "./LoginButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <Navbar expand="sm">
       <Container fluid>
@@ -29,7 +34,8 @@ export default function Header() {
             {icons.emptyCart()}
           </Link>
           <Link to={`createDesign`}>Upload Design</Link>
-          <Link to={`login`}>Login</Link>
+          {!isAuthenticated && <LoginButton />}
+          {isAuthenticated && <LogoutButton />}
         </Navbar.Collapse>
       </Container>
     </Navbar>
