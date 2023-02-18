@@ -7,6 +7,7 @@ export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [cartSubtotal, setCartSubtotal] = useState(0);
   console.log(cartItems);
+  console.log(cartSubtotal);
 
   useEffect(() => {
     const cart = localStorage.getItem("cartItems");
@@ -52,7 +53,7 @@ export default function Cart() {
               className="link-light"
               to="/checkout"
               id="link"
-              state={{ cartItems }}
+              state={{ cartSubtotal }}
             >
               Checkout
             </Link>
