@@ -10,11 +10,18 @@ import Home from "./pages/Home";
 import ShirtsGallery from "./pages/ShirtsGallery";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/Checkout";
+import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
+
+const Auth0ProviderLayout = () => (
+  <Auth0ProviderWithNavigate>
+    <App />
+  </Auth0ProviderWithNavigate>
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Auth0ProviderLayout />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
