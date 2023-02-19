@@ -7,7 +7,7 @@ import App from "./App";
 import ErrorPage from "./pages/Error";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
-import ShirtsGallery from "./pages/ShirtsGallery";
+import Shirts from "./pages/Shirts";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/Checkout";
 import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "aboutus", element: <AboutUs /> },
-      { path: "shirts", element: <ShirtsGallery /> },
+      { path: "shirts/theme/:themeId", element: <Shirts /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <CheckOut /> },
     ],
