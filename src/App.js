@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Outlet } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [accessToken, setAccessToken] = useState("");
+
+  const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
+    useAuth0();
+
+  const checkUser = async () => {
+    if (isAuthenticated) {
+      let token = getAccessTokenSilently();
+      setAccessToken(token);
+      console.log(accessToken);
+      console.log(user);
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, [isLoading]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <NavBar />
+      <Outlet />
     </div>
   );
 }
