@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import ShirtsDisplay from "../components/ShirtsDisplay";
 
-const Shirts = () => {
+const ThemeShirts = () => {
   const { themeId } = useParams();
   const [designs, setDesigns] = useState([]);
 
@@ -29,4 +29,4 @@ const Shirts = () => {
   );
 };
 
-export default Shirts;
+export default ThemeShirts;
