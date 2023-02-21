@@ -1,5 +1,4 @@
 export default function CartList(props) {
-  console.log(props);
   return (
     <div className="container">
       <div className="row">

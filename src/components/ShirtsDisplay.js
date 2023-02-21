@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import ShirtCard from "./ShirtCard";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-const Shirts = () => {
-  const [allDesigns, setAllDesigns] = useState([]);
-
-  const retrieveDesigns = async () => {
-    let data = await axios.get("http://localhost:8000/design");
-    setAllDesigns(data.data);
-  };
-
-  useEffect(() => {
-    retrieveDesigns();
-  }, []);
-
+const ShirtsDisplay = ({ designs }) => {
   return (
     <div>
       <div className="container text-center">
         <Row className="row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
-          {allDesigns
+          {designs
             .filter((item, index) => index < 9)
             .map((design, index) => (
               <Col>
@@ -31,6 +18,7 @@ const Shirts = () => {
                   designId={design.id}
                   designer={design.user.username}
                   price={design.price}
+                  description={design.description}
                 />
               </Col>
             ))}
@@ -40,4 +28,4 @@ const Shirts = () => {
   );
 };
 
-export default Shirts;
+export default ShirtsDisplay;

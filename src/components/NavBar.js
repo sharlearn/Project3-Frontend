@@ -25,7 +25,7 @@ const NavBar = () => {
       <NavDropdown title="themes">
         {themes.map((theme, index) => (
           <NavDropdown.Item key={index}>
-            <Link to={`shirts`}>{theme}</Link>
+            <Link to={`shirts/theme/${index + 1}`}>{theme}</Link>
           </NavDropdown.Item>
         ))}
       </NavDropdown>
