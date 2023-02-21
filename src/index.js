@@ -7,11 +7,12 @@ import App from "./App";
 import ErrorPage from "./pages/Error";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
-import Shirts from "./pages/Shirts";
+import ThemeShirts from "./pages/ThemeShirts";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/Checkout";
 import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
 import CreateDesign from "./pages/CreateDesign";
+import ArtistShirts from "./pages/ArtistShirts";
 
 const Auth0ProviderLayout = () => (
   <Auth0ProviderWithNavigate>
@@ -27,7 +28,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "aboutus", element: <AboutUs /> },
-      { path: "shirts/theme/:themeId", element: <Shirts /> },
+      { path: "shirts/theme/:themeId", element: <ThemeShirts /> },
+      { path: "shirts/artist/:artistId", element: <ArtistShirts /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <CheckOut /> },
       { path: "create", element: <CreateDesign /> },
