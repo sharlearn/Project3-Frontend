@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [cartSubtotal, setCartSubtotal] = useState(0);
-  console.log(cartItems);
-  console.log(cartSubtotal);
 
   useEffect(() => {
     const cart = localStorage.getItem("cartItems");

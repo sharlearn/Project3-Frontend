@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const CheckOut = () => {
   let { state } = useLocation();
+  console.log(state);
   const { cartSubtotal } = state;
 
   const [cartItems, setCartItems] = useState([]);

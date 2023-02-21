@@ -11,6 +11,7 @@ import Shirts from "./pages/Shirts";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/Checkout";
 import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
+import CreateDesign from "./pages/CreateDesign";
 
 const Auth0ProviderLayout = () => (
   <Auth0ProviderWithNavigate>
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: "shirts/theme/:themeId", element: <Shirts /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <CheckOut /> },
+      { path: "create", element: <CreateDesign /> },
     ],
   },
 ]);

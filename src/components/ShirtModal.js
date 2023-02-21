@@ -3,10 +3,10 @@ import { useState } from "react";
 import icons from "../utilities/icons";
 
 const sizeOptions = [
-  { value: "small", display: "S" },
-  { value: "medium", display: "M" },
-  { value: "large", display: "L" },
-  { value: "x-large", display: "XL" },
+  { value: "s", display: "S" },
+  { value: "m", display: "M" },
+  { value: "l", display: "L" },
+  { value: "xl", display: "XL" },
 ];
 const colourOptions = ["Red", "Blue", "Yellow", "Green", "White", "Black"];
 
@@ -77,6 +77,7 @@ export default function ShirtModal(props) {
                 onLoad={() => setIsLoading(false)}
               />
             </div>
+            <div className="fs-6 fw-light fst-italic">{props.description}</div>
           </div>
           <div className="container w-75">
             <h4>{props.designName}</h4>

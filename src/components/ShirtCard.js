@@ -54,6 +54,8 @@ export default function ShirtCard(props) {
         designName={props.designName}
         imageURL={props.imageURL}
         price={props.price}
+        description={props.description}
+        designId={props.designId}
       />
     </>
   );

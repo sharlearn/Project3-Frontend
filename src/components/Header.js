@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import LoginButton from "./LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
   const { isAuthenticated } = useAuth0();
@@ -20,7 +21,7 @@ export default function Header() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <InputGroup className="search-input">
+          {/* <InputGroup className="search-input">
             <Form.Control
               placeholder="search all designs"
               aria-label="search all designs"
@@ -29,11 +30,12 @@ export default function Header() {
             <Button variant="outline-secondary" id="button-addon2">
               {icons.search}
             </Button>
-          </InputGroup>
+          </InputGroup> */}
+          <SearchBar />
           <Link className="header-cart" to={`cart`}>
             {icons.emptyCart()}
           </Link>
-          <Link to={`createDesign`}>Upload Design</Link>
+          <Link to={`create`}>Upload Design</Link>
           {!isAuthenticated && <LoginButton />}
           {isAuthenticated && <LogoutButton />}
         </Navbar.Collapse>
