@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 export default function CheckoutForm(props) {
-  const { cartItems, subtotal } = props;
+  const { cartItems, subtotal, user } = props;
+  console.log(user);
 
   const [firstName, setFirstName] = useState(" ");
   const [lastName, setLastName] = useState(" ");
   const [email, setEmail] = useState(" ");
   const [address, setAddress] = useState(" ");
-  const [zipCode, setZipCode] = useState(" ");
 
-  const handleCheckout = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
   };
 
@@ -46,7 +46,7 @@ export default function CheckoutForm(props) {
 
       <div className="col-md-7 col-lg-8">
         <h4 className="mb-3">Billing address</h4>
-        <form className="needs-validation" onSubmit={handleCheckout} noValidate>
+        <form className="needs-validation" onSubmit={handleSubmit} noValidate>
           <div className="row g-3">
             <div className="col-sm-6">
               <label htmlFor="firstName" className="form-label">
@@ -86,7 +86,7 @@ export default function CheckoutForm(props) {
 
             <div className="col-12">
               <label htmlFor="email" className="form-label">
-                Email <span className="text-muted">(Optional)</span>
+                Email
               </label>
               <input
                 type="email"
@@ -119,7 +119,7 @@ export default function CheckoutForm(props) {
               </div>
             </div>
 
-            <div className="col-md-3">
+            {/* <div className="col-md-3">
               <label htmlFor="zip" className="form-label">
                 Zip
               </label>
@@ -133,7 +133,7 @@ export default function CheckoutForm(props) {
                 required
               />
               <div className="invalid-feedback">Zip code required.</div>
-            </div>
+            </div> */}
           </div>
 
           <hr className="my-4" />

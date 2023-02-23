@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <Header />
       <NavBar />
-      <Outlet />
+      <Outlet context={{ user }} />
     </div>
   );
 }

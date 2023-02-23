@@ -1,12 +1,13 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import CartSummary from "../components/CartSummary";
 import CheckoutForm from "../components/CheckoutForm";
 import { useEffect, useState } from "react";
 
 const CheckOut = () => {
   let { state } = useLocation();
-  console.log(state);
   const { cartSubtotal } = state;
+
+  const { user } = useOutletContext();
 
   const [cartItems, setCartItems] = useState([]);
 
@@ -19,7 +20,7 @@ const CheckOut = () => {
 
   return (
     <div>
-      <CheckoutForm subtotal={cartSubtotal} cartItems={cartItems} />
+      <CheckoutForm subtotal={cartSubtotal} cartItems={cartItems} user={user} />
     </div>
   );
 };
