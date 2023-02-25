@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import icons from "../utilities/icons";
+import axios from "axios";
 
 const sizeOptions = [
   { value: "s", display: "S" },
@@ -8,14 +9,28 @@ const sizeOptions = [
   { value: "l", display: "L" },
   { value: "xl", display: "XL" },
 ];
-const colourOptions = ["Red", "Blue", "Yellow", "Green", "White", "Black"];
 
 export default function ShirtModal(props) {
   const [isLoading, setIsLoading] = useState(true);
+  const [colourOptions, setColourOptions] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColour, setSelectedColour] = useState("");
   const [selectedColourId, setSelectedColourId] = useState("");
   const [quantity, setQuantity] = useState(1);
+
+  const retrieveColours = async () => {
+    const { data: colours } = await axios.get(`http://localhost:8000/colour`);
+    console.log(colours[0]);
+    console.log(typeof colours);
+    return setColourOptions([...colours]);
+  };
+
+  useEffect(() => {
+    retrieveColours();
+  }, []);
+
+  console.log(colourOptions);
+  console.log(sizeOptions);
 
   const sizeSelected = (event) => {
     setSelectedSize(event.target.value);
@@ -67,6 +82,7 @@ export default function ShirtModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
+      {console.log(colourOptions)}
       <Modal.Body>
         <div className="container d-flex">
           <div className="w-50">
@@ -117,17 +133,17 @@ export default function ShirtModal(props) {
                       type="radio"
                       className="btn-check"
                       name="option-colour"
-                      id={`option-${colour}`}
+                      id={`option-${colour.colour}`}
                       autocomplete="off"
-                      value={index}
+                      value={colour.id}
                       onClick={colourSelected}
                       required
                     />
                     <label
                       className="btn btn-outline-dark"
-                      htmlFor={`option-${colour}`}
+                      htmlFor={`option-${colour.colour}`}
                     >
-                      {colour}
+                      {colour.colour}
                     </label>
                   </div>
                 ))}
