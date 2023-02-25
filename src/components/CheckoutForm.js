@@ -1,18 +1,54 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import OrderLoading from "./OrderLoading";
 
 export default function CheckoutForm(props) {
-  const { cartItems, subtotal } = props;
+  const { cartItems, subtotal, user } = props;
 
   const [firstName, setFirstName] = useState(" ");
   const [lastName, setLastName] = useState(" ");
   const [email, setEmail] = useState(" ");
   const [address, setAddress] = useState(" ");
-  const [zipCode, setZipCode] = useState(" ");
+  const [submittingOrder, setSubmittingOrder] = useState(false);
 
-  const handleCheckout = (event) => {
+  const navigate = useNavigate();
+
+  const orderSubmit = (event) => {
     event.preventDefault();
+    setSubmittingOrder(true);
+
+    //check first if user is users table
+    axios
+      .post("http://localhost:8000/user/finduser", {
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        username: user.nickname,
+      })
+      .then((response) => {
+        //create new row in orders table
+        axios
+          .post("http://localhost:8000/order", {
+            userId: response.data.user.id,
+            totalPrice: subtotal + 10,
+            deliveryAddress: address,
+            chosenDesigns: cartItems,
+          })
+          .then((response) => {
+            console.log(response);
+            if (response) {
+              navigate("/orderSubmitted");
+              // localStorage.clear();
+            }
+          });
+      })
+      .catch((error) => console.log(error));
   };
 
+  if (submittingOrder) {
+    return <OrderLoading />;
+  }
   return (
     <div className="row g-5">
       <div className="col-md-5 col-lg-4 order-md-last">
@@ -46,7 +82,7 @@ export default function CheckoutForm(props) {
 
       <div className="col-md-7 col-lg-8">
         <h4 className="mb-3">Billing address</h4>
-        <form className="needs-validation" onSubmit={handleCheckout} noValidate>
+        <form className="needs-validation" onSubmit={orderSubmit} noValidate>
           <div className="row g-3">
             <div className="col-sm-6">
               <label htmlFor="firstName" className="form-label">
@@ -86,7 +122,7 @@ export default function CheckoutForm(props) {
 
             <div className="col-12">
               <label htmlFor="email" className="form-label">
-                Email <span className="text-muted">(Optional)</span>
+                Email
               </label>
               <input
                 type="email"
@@ -103,7 +139,7 @@ export default function CheckoutForm(props) {
 
             <div className="col-12">
               <label htmlFor="address" className="form-label">
-                Address
+                Shipping Address
               </label>
               <input
                 type="text"
@@ -119,7 +155,7 @@ export default function CheckoutForm(props) {
               </div>
             </div>
 
-            <div className="col-md-3">
+            {/* <div className="col-md-3">
               <label htmlFor="zip" className="form-label">
                 Zip
               </label>
@@ -133,7 +169,7 @@ export default function CheckoutForm(props) {
                 required
               />
               <div className="invalid-feedback">Zip code required.</div>
-            </div>
+            </div> */}
           </div>
 
           <hr className="my-4" />

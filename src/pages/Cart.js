@@ -46,7 +46,7 @@ export default function Cart() {
         </div>
         <div className="rounded w-50 h-50 p-4" id="order-summary">
           <CartSummary subtotal={cartSubtotal} />
-          <button class="btn btn-dark">
+          <button className="btn btn-dark">
             <Link
               className="link-light"
               to="/checkout"

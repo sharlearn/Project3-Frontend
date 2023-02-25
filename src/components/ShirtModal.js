@@ -14,14 +14,16 @@ export default function ShirtModal(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColour, setSelectedColour] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [selectedColourId, setSelectedColourId] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const sizeSelected = (event) => {
     setSelectedSize(event.target.value);
   };
 
   const colourSelected = (event) => {
-    setSelectedColour(event.target.value);
+    setSelectedColour(colourOptions[event.target.value]);
+    setSelectedColourId(event.target.value);
   };
 
   const quantitySet = (event) => {
@@ -34,10 +36,12 @@ export default function ShirtModal(props) {
     const userSelection = {
       designName: props.designName,
       size: selectedSize,
-      color: selectedColour,
+      colour: selectedColour,
+      colourId: selectedColourId,
       quantity: quantity,
       imageURL: props.imageURL,
       price: props.price,
+      designId: props.designId,
     };
     const currentItems = JSON.parse(localStorage.getItem("cartItems"));
 
@@ -95,6 +99,7 @@ export default function ShirtModal(props) {
                       autocomplete="off"
                       value={size.value}
                       onClick={sizeSelected}
+                      required
                     />
                     <label
                       className="btn btn-outline-dark"
@@ -107,17 +112,21 @@ export default function ShirtModal(props) {
               </div>
               <div className="container row row-cols-3 m-0 p-0">
                 {colourOptions.map((colour, index) => (
-                  <div class="col p-0 border" key={index}>
+                  <div className="col p-0" key={index}>
                     <input
                       type="radio"
                       className="btn-check"
-                      name="options-colour"
+                      name="option-colour"
                       id={`option-${colour}`}
                       autocomplete="off"
-                      value={colour}
+                      value={index}
                       onClick={colourSelected}
+                      required
                     />
-                    <label className="btn p-0" htmlFor={`option-${colour}`}>
+                    <label
+                      className="btn btn-outline-dark"
+                      htmlFor={`option-${colour}`}
+                    >
                       {colour}
                     </label>
                   </div>
@@ -129,7 +138,9 @@ export default function ShirtModal(props) {
                   type="number"
                   min="1"
                   id="shirt-quantity"
+                  defaultValue="1"
                   onChange={quantitySet}
+                  required
                 />
               </p>
               <p>
