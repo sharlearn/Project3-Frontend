@@ -10,7 +10,7 @@ const ShirtsDisplay = ({ designs }) => {
           {designs
             .filter((item, index) => index < 9)
             .map((design, index) => (
-              <Col>
+              <Col key={index}>
                 <ShirtCard
                   imageURL={design.image_url}
                   designName={design.design_name}

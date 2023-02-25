@@ -1,5 +1,4 @@
 import { useLocation, useOutletContext } from "react-router-dom";
-import CartSummary from "../components/CartSummary";
 import CheckoutForm from "../components/CheckoutForm";
 import { useEffect, useState } from "react";
 
