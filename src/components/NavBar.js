@@ -25,18 +25,18 @@ const themes = [
 
 const NavBar = () => {
   return (
-    <Nav className="justify-content-center" bg="light">
-      <Nav.Item>
+    <Nav className="justify-content-evenly mt-3 mb-3" bg="light">
+      {/* <Nav.Item>
         <Link to={`shirts`}>new</Link>
-      </Nav.Item>
-      <NavDropdown title="themes">
+      </Nav.Item> */}
+      <NavDropdown title="THEMES">
         {themes.map((theme, index) => (
           <NavDropdown.Item key={index}>
             <Link to={`shirts/theme/${index + 1}`}>{theme}</Link>
           </NavDropdown.Item>
         ))}
       </NavDropdown>
-      <NavDropdown title="artists">
+      <NavDropdown title="ARTISTS">
         <NavDropdown.Item>
           <Link to={`shirts/artist/c03ade38-288f-4559-9058-6c8e9fee0773`}>
             nicholasl

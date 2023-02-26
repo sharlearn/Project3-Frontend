@@ -20,13 +20,20 @@
 
 .link-light {
   text-decoration: none;
+  color: black !important;
 }
 
 .shirt-card-link {
+  font-family: "Roboto", sans-serif;
   text-decoration: none;
   color: black;
 }
 
 .shirt-card-card:hover {
   background-color: rgba(110, 133, 255, 0.3);
+}
+
+.nav-link {
+  font-family: "Roboto", sans-serif;
+  color: black !important;
 }

@@ -5,12 +5,16 @@ import Row from "react-bootstrap/Row";
 const ShirtsDisplay = ({ designs }) => {
   return (
     <div>
-      <div className="container text-center">
-        <Row className="row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
+      <div className="container text-center mt-4">
+        {/* <Row className="row-cols-sm-3"> */}
+        <Row>
           {designs
             .filter((item, index) => index < 9)
             .map((design, index) => (
-              <Col key={index}>
+              <Col
+                key={index}
+                className="d-flex flex-row justify-content-center"
+              >
                 <ShirtCard
                   imageURL={design.image_url}
                   designName={design.design_name}

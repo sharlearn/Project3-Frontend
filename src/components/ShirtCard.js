@@ -12,11 +12,11 @@ export default function ShirtCard(props) {
   return (
     <>
       <Button
-        className="shirt-card-link"
+        className="shirt-card-link d-flex flex-wrap"
         variant="link"
         onClick={() => setShowModal(true)}
       >
-        <Card className="shirt-card-card" style={{ width: "10rem" }}>
+        <Card className="shirt-card-card " style={{ width: "20rem" }}>
           <Container key={props.key} style={{ height: "10rem" }}>
             <div style={{ display: isLoading ? "block" : "none" }}>
               {icons.spinner}
