@@ -1,6 +1,3 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import icons from "../utilities/icons";
 import Container from "react-bootstrap/esm/Container";
 import Navbar from "react-bootstrap/Navbar";
