@@ -39,6 +39,7 @@ export default function Cart() {
                   price={item.price}
                   quantity={item.quantity}
                   size={item.size}
+                  colour={item.colour}
                 />
               ))}
             </div>

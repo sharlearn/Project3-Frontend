@@ -7,6 +7,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
 
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+  const audienceUrl = process.env.REACT_APP_AUTH0_AUDIENCE;
 
   const onRedirectCallback = (appState) => {
     navigate((appState && appState.returnTo) || window.location.pathname);
@@ -18,8 +19,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: `https://${domain}/api/v2/`,
-        // scope: "read:current_user update:current_user_metadata",
+        audience: `${audienceUrl}`,
       }}
       onRedirectCallback={onRedirectCallback}
     >

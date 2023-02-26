@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import OrderLoading from "./OrderLoading";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 export default function CheckoutForm(props) {
-  const { cartItems, subtotal, user } = props;
+  const { cartItems, subtotal, user, userAccessToken } = props;
 
   const [firstName, setFirstName] = useState(" ");
   const [lastName, setLastName] = useState(" ");
@@ -29,16 +30,29 @@ export default function CheckoutForm(props) {
       .then((response) => {
         //create new row in orders table
         axios
-          .post("http://localhost:8000/order", {
-            userId: response.data.user.id,
-            totalPrice: subtotal + 10,
-            deliveryAddress: address,
-            chosenDesigns: cartItems,
-          })
+          .post(
+            "http://localhost:8000/order",
+            {
+              userId: response.data.user.id,
+              totalPrice: subtotal + 10,
+              deliveryAddress: address,
+              chosenDesigns: cartItems,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${userAccessToken}`,
+              },
+            }
+          )
           .then((response) => {
-            console.log(response);
             if (response) {
-              navigate("/orderSubmitted");
+              navigate("/orderSubmitted", {
+                state: {
+                  ...response.data,
+                  userToken: userAccessToken,
+                  username: user.nickname,
+                },
+              });
               // localStorage.clear();
             }
           });
@@ -154,146 +168,8 @@ export default function CheckoutForm(props) {
                 Please enter your shipping address.
               </div>
             </div>
-
-            {/* <div className="col-md-3">
-              <label htmlFor="zip" className="form-label">
-                Zip
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="zip"
-                placeholder=""
-                value={zipCode}
-                onChange={(event) => setZipCode(event.target.value)}
-                required
-              />
-              <div className="invalid-feedback">Zip code required.</div>
-            </div> */}
           </div>
-
           <hr className="my-4" />
-
-          {/* <div className="form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="same-address"
-            />
-            <label className="form-check-label" htmlFor="same-address">
-              Shipping address is the same as my billing address
-            </label>
-          </div> */}
-
-          {/* <hr className="my-4" />
-
-          <h4 className="mb-3">Payment</h4>
-
-          <div className="my-3">
-            <div className="form-check">
-              <input
-                id="credit"
-                name="paymentMethod"
-                type="radio"
-                className="form-check-input"
-                defaultChecked
-                required
-              />
-              <label className="form-check-label" htmlFor="credit">
-                Credit card
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                id="debit"
-                name="paymentMethod"
-                type="radio"
-                className="form-check-input"
-                required
-              />
-              <label className="form-check-label" htmlFor="debit">
-                Debit card
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                id="paypal"
-                name="paymentMethod"
-                type="radio"
-                className="form-check-input"
-                required
-              />
-              <label className="form-check-label" htmlFor="paypal">
-                PayPal
-              </label>
-            </div>
-          </div>
-
-          <div className="row gy-3">
-            <div className="col-md-6">
-              <label htmlFor="cc-name" className="form-label">
-                Name on card
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="cc-name"
-                placeholder=""
-                required
-              />
-              <small className="text-muted">
-                Full name as displayed on card
-              </small>
-              <div className="invalid-feedback">Name on card is required</div>
-            </div>
-
-            <div className="col-md-6">
-              <label htmlFor="cc-number" className="form-label">
-                Credit card number
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="cc-number"
-                placeholder=""
-                required
-              />
-              <div className="invalid-feedback">
-                Credit card number is required
-              </div>
-            </div>
-
-            <div className="col-md-3">
-              <label htmlFor="cc-expiration" className="form-label">
-                Expiration
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="cc-expiration"
-                placeholder=""
-                required
-              />
-              <div className="invalid-feedback">Expiration date required</div>
-            </div>
-
-            <div className="col-md-3">
-              <label htmlFor="cc-cvv" className="form-label">
-                CVV
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="cc-cvv"
-                placeholder=""
-                required
-              />
-              <div className="invalid-feedback">Security code required</div>
-            </div>
-          </div>
-
-          <hr className="my-4" /> */}
-
           <button className="w-100 btn btn-dark btn-lg" type="submit">
             Continue to checkout
           </button>

@@ -19,9 +19,9 @@ const themes = [
 const NavBar = () => {
   return (
     <Nav className="justify-content-center" bg="light">
-      <Nav.Item>
+      {/* <Nav.Item>
         <Link to={`shirts`}>new</Link>
-      </Nav.Item>
+      </Nav.Item> */}
       <NavDropdown title="themes">
         {themes.map((theme, index) => (
           <NavDropdown.Item key={index}>

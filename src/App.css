@@ -30,3 +30,11 @@
 .shirt-card-card:hover {
   background-color: rgba(110, 133, 255, 0.3);
 }
+
+#order-confirmed-list {
+  height: 100px;
+}
+
+#order-confirmed-img {
+  overflow: hidden;
+}
