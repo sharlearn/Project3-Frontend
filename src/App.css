@@ -67,3 +67,7 @@
   border: none;
   color: black;
 }
+
+#paginate {
+  margin: 25px;
+}
