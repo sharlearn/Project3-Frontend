@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState } from "react";
 import axios from "axios";
 import SearchList from "./SearchList";
 import debounce from "lodash.debounce";
@@ -10,7 +10,6 @@ const SearchBar = () => {
     await axios
       .get(`http://localhost:8000/design/search/${searchTerm}`)
       .then((response) => {
-        console.log(response.data);
         setResults(response.data);
       });
   }, 150);

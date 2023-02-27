@@ -1,7 +1,7 @@
 export default function CartSummary(props) {
   return (
     <div>
-      <h5>Order Summary</h5>
+      <h3>Order Summary</h3>
       {props.children}
       <p>Subtotal: ${props.subtotal}</p>
       <p>Shipping: $10</p>

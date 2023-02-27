@@ -21,7 +21,7 @@ const ArtistShirts = () => {
 
   useEffect(() => {
     retrieveDesigns();
-  }, [retrieveDesigns]);
+  }, []);
 
   return (
     <div>

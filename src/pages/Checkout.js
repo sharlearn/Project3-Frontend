@@ -6,14 +6,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 const CheckOut = () => {
   let { state } = useLocation();
   const { cartSubtotal } = state;
+  console.log(cartSubtotal);
 
   const [accessToken, setAccessToken] = useState("");
   const [cartItems, setCartItems] = useState([]);
 
   const { isAuthenticated, getAccessTokenSilently, user, loginWithRedirect } =
     useAuth0();
-
-  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 
   const checkUser = async () => {
     if (isAuthenticated) {
@@ -27,8 +26,6 @@ const CheckOut = () => {
   useEffect(() => {
     checkUser();
   }, []);
-
-  // const { user } = useOutletContext();
 
   useEffect(() => {
     const cart = localStorage.getItem("cartItems");
