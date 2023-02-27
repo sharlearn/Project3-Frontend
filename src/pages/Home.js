@@ -3,7 +3,6 @@ import axios from "axios";
 import ShirtsDisplay from "../components/ShirtsDisplay";
 import HomepageCarousel from "../components/Carousel";
 import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/Row";
 
 const Home = () => {
   const [allDesigns, setAllDesigns] = useState([]);

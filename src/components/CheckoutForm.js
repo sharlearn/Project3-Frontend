@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import OrderLoading from "./OrderLoading";
-// import { useAuth0 } from "@auth0/auth0-react";
 
 export default function CheckoutForm(props) {
   const { cartItems, subtotal, user, userAccessToken } = props;
@@ -53,7 +52,7 @@ export default function CheckoutForm(props) {
                   username: user.nickname,
                 },
               });
-              // localStorage.clear();
+              localStorage.clear();
             }
           });
       })
@@ -171,7 +170,7 @@ export default function CheckoutForm(props) {
           </div>
           <hr className="my-4" />
           <button className="w-100 btn btn-dark btn-lg" type="submit">
-            Continue to checkout
+            Checkout
           </button>
         </form>
       </div>
