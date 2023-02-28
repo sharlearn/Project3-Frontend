@@ -20,8 +20,6 @@ export default function ShirtModal(props) {
 
   const retrieveColours = async () => {
     const { data: colours } = await axios.get(`http://localhost:8000/colour`);
-    console.log(colours[0]);
-    console.log(typeof colours);
     return setColourOptions([...colours]);
   };
 
@@ -29,15 +27,12 @@ export default function ShirtModal(props) {
     retrieveColours();
   }, []);
 
-  console.log(colourOptions);
-  console.log(sizeOptions);
-
   const sizeSelected = (event) => {
     setSelectedSize(event.target.value);
   };
 
   const colourSelected = (event) => {
-    setSelectedColour(colourOptions[event.target.value]);
+    setSelectedColour(colourOptions[event.target.value].colour);
     setSelectedColourId(event.target.value);
   };
 
@@ -82,7 +77,6 @@ export default function ShirtModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      {console.log(colourOptions)}
       <Modal.Body>
         <div className="container d-flex">
           <div className="w-50">

@@ -13,16 +13,16 @@ function App() {
 
   const checkUser = async () => {
     if (isAuthenticated) {
-      let token = getAccessTokenSilently();
+      let token = await getAccessTokenSilently();
       setAccessToken(token);
-      console.log(accessToken);
       console.log(user);
+      console.log(token);
     }
   };
 
   useEffect(() => {
     checkUser();
-  }, [isLoading]);
+  }, []);
 
   return (
     <div className="App">
