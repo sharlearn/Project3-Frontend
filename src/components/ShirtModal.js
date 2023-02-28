@@ -104,7 +104,7 @@ export default function ShirtModal(props) {
             <p>Design by {props.designer}</p>
             <p>$ {props.price}</p>
             <form onSubmit={handleSubmit}>
-              <div className="d-flex">
+              <div className="d-flex justify-content-evenly mb-3">
                 {sizeOptions.map((size, index) => (
                   <div key={index}>
                     <input
@@ -128,7 +128,7 @@ export default function ShirtModal(props) {
               </div>
               <div className="container row row-cols-3 m-0 p-0">
                 {colourOptions.map((colour, index) => (
-                  <div className="col p-0" key={index}>
+                  <div className="col p-1" key={index}>
                     <input
                       type="radio"
                       className="btn-check"
@@ -149,7 +149,9 @@ export default function ShirtModal(props) {
                 ))}
               </div>
               <p>
-                <label htmlFor="shirt-quantity">Quantity:</label>
+                <label className="mt-3 me-2 m-2" htmlFor="shirt-quantity">
+                  Quantity:
+                </label>
                 <input
                   type="number"
                   min="1"
