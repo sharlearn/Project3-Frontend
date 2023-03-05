@@ -4,16 +4,27 @@ import Row from "react-bootstrap/Row";
 import Pagination from "react-bootstrap/Pagination";
 import { useEffect, useState } from "react";
 
+// static variables can live outside of the component
+const shirtsPerPage = 9;
+
 const ShirtsDisplay = ({ designs }) => {
-  console.log(designs);
   const [currentPage, setCurrentPage] = useState(1);
   const [designsDisplayed, setDesignsDisplayed] = useState([]);
-  const shirtsPerPage = 9;
+
   const totalPages = Math.ceil(designs.length / shirtsPerPage);
-  console.log(totalPages);
 
   let pages = [];
 
+  // this is very creative, though I think this might not be the best way to go about it, and a bit inefficient possibly
+  // A better way would be to always display 9 items, and fetch data only for 9 items. So that means the pagination happens on the BE rather than the FE. For that you might need to check how to do pagination on a SQL database. We basically keep track of our current position and of the LIMIT of items and update that as we cross to a new page. Once there are no more items in the DB, we would not give the user to go to the next page anymore. That would require you to possibly also return a total count of items in your DB, to display all pages from the start.
+  // example response:
+  /*
+
+   { designs: [{...}, {...}, ...], // maybe length 9
+    totalCount: 53 // use this to display the number of pages, then once click on page 5 for example get/fetch items 45 to 54
+    }
+
+  */
   for (let i = 1; i <= totalPages; i++) {
     pages.push(
       <Pagination.Item

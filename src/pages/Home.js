@@ -8,8 +8,24 @@ const Home = () => {
   const [allDesigns, setAllDesigns] = useState([]);
 
   const retrieveDesigns = async () => {
-    let data = await axios.get("http://localhost:8000/design/");
-    setAllDesigns(data.data);
+    let {data} = await axios.get("http://localhost:8000/design/");
+    setAllDesigns(data);
+
+    /*
+
+    OR
+
+    let response = await axios.get("http://localhost:8000/design/");
+    setAllDesigns(response.data);
+     */
+
+    // but what if an error occurs when fetching?
+
+    let response = await axios.get("http://localhost:8000/design/");
+    if (response.data) setAllDesigns(response.data);
+
+    // can also add try catch statement as well to handle the error possibly, or check the response status
+    // if (response.status !== 200) handle error
   };
 
   useEffect(() => {

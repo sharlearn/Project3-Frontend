@@ -7,6 +7,7 @@ const ArtistShirts = () => {
   const { artistId } = useParams();
   const [designs, setDesigns] = useState([]);
 
+  // why use useCallback here, when you are not using a dependency array to possibly update the function and the artistId is dynamic?
   const retrieveDesigns = useCallback(async () => {
     await axios
       .get(`http://localhost:8000/design/artist/${artistId}`)
@@ -15,8 +16,10 @@ const ArtistShirts = () => {
       });
   });
 
+  // remove irrelevant comments
   // "shirts/artist/:artistId"
 
+  // is this conversation between you guys? Slack would be the better medium here, instead of leaving comments in code.
   // what does retrieveDesigns in the square brackets mean/do?
 
   useEffect(() => {

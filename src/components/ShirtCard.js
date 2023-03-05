@@ -37,6 +37,7 @@ export default function ShirtCard(props) {
             </div>
           </Container>
           <Card.Body>
+            {/* Is it possible to have a designName but no price or designer? */}
             <Card.Title style={{ height: "2rem" }}>
               {props.designName}
             </Card.Title>
@@ -47,6 +48,7 @@ export default function ShirtCard(props) {
           </Card.Body>
         </Card>
       </Button>
+      {/* Is that all props? Maybe just pass the whole props down then, or a design object */}
       <ShirtModal
         show={showModal}
         onHide={() => setShowModal(false)}

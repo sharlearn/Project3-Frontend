@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [cartSubtotal, setCartSubtotal] = useState(0);
+  // let's place all hooks always on top of the component
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cart = localStorage.getItem("cartItems");
@@ -15,22 +17,25 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
-    let totalPrice = 0;
-    cartItems.forEach((item) => {
-      const itemTotal = item.price * item.quantity;
-      totalPrice += itemTotal;
-    });
-    setCartSubtotal(totalPrice);
+    // I would add a condition here, since when cartItems is empty, we won't need to run this code and cause another rerender
+    if (cartItems) {
+      let totalPrice = 0;
+      cartItems.forEach((item) => {
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+      });
+      setCartSubtotal(totalPrice);
+    }
   }, [cartItems]);
-
-  const navigate = useNavigate();
 
   const deleteItem = (index) => {
     const newCartItems = cartItems;
     newCartItems.splice(index, 1);
 
     localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-    setCartItems([...newCartItems]);
+    // [...newCartItems] would make a new array with all values of newCartItems, which is an array already
+    // so why not just use the array itself?
+    setCartItems(newCartItems);
   };
 
   return (
@@ -38,13 +43,18 @@ export default function Cart() {
       <h2 id="cart-title">Cart</h2>
       <div className="container-fluid d-flex">
         <div className="w-50">
-          {cartItems.length === 0 && <div>No items in cart.</div>}
-          {cartItems.length > 0 && (
+          {/* 0 is falsy, above 0 is truthy */}
+          {!cartItems.length && <p>No items in cart.</p>}
+          {cartItems.length && (
             <div>
               {cartItems.map((item, index) => (
-                <div>
+                // What is this div for? If it is needed for CartList, why not define it in CartList?
+                <div> 
                   <CartList
                     key={index}
+                    // since we need to add all item properties here as props, why not just pass the whole item down?
+                    // then you destructure the object as needed in CartList
+                    // item={item}
                     designName={item.designName}
                     imageURL={item.imageURL}
                     price={item.price}

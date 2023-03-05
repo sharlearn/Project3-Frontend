@@ -21,6 +21,7 @@ const SearchList = ({ searchResults }) => {
           {item.design_name}
         </div>
       ))}
+      {/* I liked the way this feature worked on top of the search bar somehow, immediately opening up the design. Good job! */}
       {designDetails && (
         <ShirtModal
           show={showModal}
