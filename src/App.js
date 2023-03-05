@@ -15,8 +15,8 @@ function App() {
     if (isAuthenticated) {
       let token = await getAccessTokenSilently();
       setAccessToken(token);
-      console.log(user);
-      console.log(token);
+      console.log(user); // get rid of console.logs before delivering work
+      console.log(token); // get rid of console.logs before delivering work
     }
   };
 

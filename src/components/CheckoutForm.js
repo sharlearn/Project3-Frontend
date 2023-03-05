@@ -6,6 +6,7 @@ import OrderLoading from "./OrderLoading";
 export default function CheckoutForm(props) {
   const { cartItems, subtotal, user, userAccessToken } = props;
 
+  // Let's use Formik or react hook forms next time instead of handling our own form
   const [firstName, setFirstName] = useState(" ");
   const [lastName, setLastName] = useState(" ");
   const [email, setEmail] = useState(" ");
@@ -31,6 +32,7 @@ export default function CheckoutForm(props) {
         axios
           .post(
             "http://localhost:8000/order",
+            // What is the response does not include any user as no user could be found?
             {
               userId: response.data.user.id,
               totalPrice: subtotal + 10,
@@ -44,6 +46,7 @@ export default function CheckoutForm(props) {
             }
           )
           .then((response) => {
+            // I think response will always be undefined here, as you don't return the axios.post above
             if (response) {
               navigate("/orderSubmitted", {
                 state: {
@@ -56,9 +59,11 @@ export default function CheckoutForm(props) {
             }
           });
       })
+      // I think we could add more error handling aside from console.log
       .catch((error) => console.log(error));
   };
 
+  // nice, maybe a loading spinner component would have been nice here!
   if (submittingOrder) {
     return <OrderLoading />;
   }
@@ -70,6 +75,7 @@ export default function CheckoutForm(props) {
           <span className="badge bg-dark rounded-pill">{cartItems.length}</span>
         </h4>
         <ul className="list-group mb-3">
+          {/* I think cartItem should have a component! */}
           {cartItems.map((item, index) => (
             <li
               key={index}
@@ -92,7 +98,7 @@ export default function CheckoutForm(props) {
           </li>
         </ul>
       </div>
-
+            {/* I think the form and the cart items should have separate components, used in the parent page component */}
       <div className="col-md-7 col-lg-8">
         <h4 className="mb-3">Billing address</h4>
         <form className="needs-validation" onSubmit={orderSubmit} noValidate>

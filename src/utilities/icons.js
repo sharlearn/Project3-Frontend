@@ -1,3 +1,5 @@
+// really nice abstracting icons into own file / object properties
+// I would go one step further and export each Icon as a variable, so we can export each icon individually, that way we don't need to import all icons everytime we want to use an icon.
 const icons = {
   search: (
     <svg

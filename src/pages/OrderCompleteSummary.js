@@ -5,10 +5,11 @@ import axios from "axios";
 
 const OrderCompleteSummary = (props) => {
   const { state } = useLocation();
-
-  const [order, setOrder] = useState("");
+  // I assume order is an object, not a string
+  const [order, setOrder] = useState({});
 
   const retrieveLastestOrder = async () => {
+    // what about error handling if the id is making the BE return an error as it could be invalid? With your current code it would just display the loading div forever. Retry mechanism? Display error message? Render Button to retry again? Multiple ways to go about it.
     const orderDetails = await axios.get(
       `http://localhost:8000/order/${state.id}`,
       {
@@ -24,6 +25,7 @@ const OrderCompleteSummary = (props) => {
     retrieveLastestOrder();
   }, []);
 
+  // very nice!
   if (!order) return <div>loading</div>;
   return (
     <div>
@@ -31,7 +33,8 @@ const OrderCompleteSummary = (props) => {
       <p>Hi {state.username},</p>
       <p>Your order is confirmed.</p>
       <p>
-        <strong>Order Number:</strong> #{order[0].order_id}
+        {/* What if order[0] is an empty object? Then you would have a possible bug here as you try to acces order_id of {} */}
+        <strong>Order Number:</strong> #{order[0].order_id} 
       </p>
       <ul className="list-group container-md">
         {order.map((item, index) => (
@@ -42,13 +45,17 @@ const OrderCompleteSummary = (props) => {
               src={item.design_colour.design.image_url}
               alt={item.design_colour.design.design_name}
             />
+            {/* why not define a margin 0 style in your App.css to use instead of using inline styles multiple times? */}
             <div style={{ margin: 0 }}>
               <p style={{ margin: 0 }}>
+                {/* if design_colour is undefined, you will have an app breaking bug here. Trying to access design_name of undefined */}
                 <strong>{item.design_colour.design.design_name}</strong>
               </p>
               <p style={{ margin: 0 }}>
+                {/* Same app breaking bug as above */}
                 ${item.design_colour.design.price} /pc
               </p>
+              {/* Lots of room for bugs here with these possible undefined object properties */}
               <p style={{ margin: 0 }}>{item.design_colour.colour.colour}</p>
             </div>
             <div>Qty: {item.quantity}</div>

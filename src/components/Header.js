@@ -48,6 +48,7 @@ export default function Header() {
             <Col className="col-3 d-flex justify-content-end align-items-center">
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
+                {/* REMOVE COMMEEENTSSSSS */}
                 {/* <InputGroup className="search-input">
             <Form.Control
               placeholder="search all designs"

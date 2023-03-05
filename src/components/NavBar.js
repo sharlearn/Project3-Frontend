@@ -16,6 +16,7 @@ const themes = [
   "Ocean",
 ];
 
+// remove unused comments like such
 // const artists = [
 //   "johnt",
 //   "nicholasl",
@@ -23,9 +24,15 @@ const themes = [
 //   "nicolal",
 // ];
 
+const artists = {
+  name: "johnt",
+  id: "e02624ca-837d-4708-9276-74d4158f632a",
+}
+
 const NavBar = () => {
   return (
     <Nav className="justify-content-evenly mt-3 mb-3" bg="light">
+      {/* Remove comments! */}
       {/* <Nav.Item>
         <Link to={`shirts`}>new</Link>
       </Nav.Item> */}
@@ -37,6 +44,15 @@ const NavBar = () => {
         ))}
       </NavDropdown>
       <NavDropdown title="ARTISTS">
+        {/* Why not use the commented out array from above and iterate like for themes? Even with hardcoded values, it would be nicer code! See my code */}
+        {artists.map((artist) => (
+          <NavDropdown.Item>
+            <Link to={`shirts/artist/${artist.id}`}>
+              {artist.name}
+            </Link>
+          </NavDropdown.Item>
+        ))}
+
         <NavDropdown.Item>
           <Link to={`shirts/artist/c03ade38-288f-4559-9058-6c8e9fee0773`}>
             nicholasl
